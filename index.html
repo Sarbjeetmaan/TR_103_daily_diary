@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Training Diary - Sarbjeet Kaur | GNDEC Ludhiana</title>
 <link rel="icon" href="gnelogo.png">
+
 <style>
 :root{
   --bg:#f4f6fb; --surface:#ffffff; --text:#14182b; --muted:#5b6478; --line:#e3e7f0;
@@ -14,339 +16,863 @@
 :root[data-theme="dark"]{
   --bg:#0c1020; --surface:#151a30; --text:#eef0fa; --muted:#9aa3bd; --line:#262d4a;
   --brand:#8b97ff; --brand2:#6d7bff; --accent:#fb7185; --ok:#4ade80;
-  --shadow:0 8px 30px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);
-  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.5}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  line-height:1.5
+}
 button{font:inherit;color:inherit;cursor:pointer}
 a{color:inherit}
 
-/* ---------- top bar ---------- */
-.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
-  background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
-.nav-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px}
+/* NAVIGATION */
+.nav{
+  position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
+  background:color-mix(in srgb,var(--bg) 82%,transparent);
+  border-bottom:1px solid var(--line)
+}
+.nav-in{
+  max-width:1100px;margin:0 auto;padding:10px 20px;
+  display:flex;align-items:center;gap:12px
+}
 .nav img{width:38px;height:38px;object-fit:contain}
 .nav .t{font-weight:700;font-size:15px;line-height:1.15}
-.nav .t small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.nav .t small{
+  display:block;font-weight:500;color:var(--muted);font-size:12px
+}
 .sp{flex:1}
-.navlinks a{margin-left:14px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px}
+.navlinks a{
+  margin-left:14px;text-decoration:none;color:var(--muted);
+  font-weight:600;font-size:14px
+}
 .navlinks a:hover{color:var(--brand)}
-.icon-btn{border:1px solid var(--line);background:var(--surface);width:38px;height:38px;border-radius:12px;
-  display:grid;place-items:center}
+.icon-btn{
+  border:1px solid var(--line);background:var(--surface);
+  width:38px;height:38px;border-radius:12px;display:grid;place-items:center
+}
 .icon-btn:hover{border-color:var(--brand)}
 @media(max-width:640px){.navlinks{display:none}}
 
-/* ---------- hero ---------- */
-.hero{position:relative;overflow:hidden;color:#fff;
-  background:radial-gradient(1200px 500px at 85% -10%,#4d5cff55,transparent 60%),
-             radial-gradient(800px 400px at 0% 110%,#e11d4844,transparent 60%),
-             linear-gradient(135deg,#141b5c,#1f2a7a 55%,#2b3aa8)}
-.hero::before{content:"";position:absolute;inset:0;opacity:.07;
-  background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
-  background-size:38px 38px}
-.hero-in{position:relative;max-width:1100px;margin:0 auto;padding:56px 20px 70px;
-  display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
-.logo-wrap{width:128px;height:128px;border-radius:50%;background:#fff;display:grid;place-items:center;
-  box-shadow:0 14px 40px rgba(0,0,0,.35);animation:float 5s ease-in-out infinite}
+/* HERO */
+.hero{
+  position:relative;overflow:hidden;color:#fff;
+  background:
+    radial-gradient(1200px 500px at 85% -10%,#4d5cff55,transparent 60%),
+    radial-gradient(800px 400px at 0% 110%,#e11d4844,transparent 60%),
+    linear-gradient(135deg,#141b5c,#1f2a7a 55%,#2b3aa8)
+}
+.hero::before{
+  content:"";position:absolute;inset:0;opacity:.07;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:38px 38px
+}
+.hero-in{
+  position:relative;max-width:1100px;margin:0 auto;
+  padding:56px 20px 70px;
+  display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center
+}
+.logo-wrap{
+  width:128px;height:128px;border-radius:50%;background:#fff;
+  display:grid;place-items:center;
+  box-shadow:0 14px 40px rgba(0,0,0,.35);
+  animation:float 5s ease-in-out infinite
+}
 .logo-wrap img{width:108px;height:108px;object-fit:contain}
-.logo-wrap .fallback{display:none;font-weight:800;color:#1f2a7a;font-size:26px}
-.kicker{letter-spacing:.14em;text-transform:uppercase;font-size:12px;opacity:.8;font-weight:700}
-.college{font-size:clamp(22px,3.4vw,34px);font-weight:800;margin:6px 0 2px;line-height:1.15}
+.logo-wrap .fallback{
+  display:none;font-weight:800;color:#1f2a7a;font-size:26px
+}
+.kicker{
+  letter-spacing:.14em;text-transform:uppercase;
+  font-size:12px;opacity:.8;font-weight:700
+}
+.college{
+  font-size:clamp(22px,3.4vw,34px);
+  font-weight:800;margin:6px 0 2px;line-height:1.15
+}
 .dept{opacity:.85;margin:0 0 18px}
 .title{font-size:clamp(18px,2.4vw,24px);font-weight:700;margin:0 0 14px}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip{background:#ffffff1f;border:1px solid #ffffff33;padding:7px 14px;border-radius:999px;font-size:14px;
-  font-weight:600;backdrop-filter:blur(4px)}
+.chip{
+  background:#ffffff1f;border:1px solid #ffffff33;
+  padding:7px 14px;border-radius:999px;
+  font-size:14px;font-weight:600;backdrop-filter:blur(4px)
+}
 @media(max-width:720px){
-  .hero-in{grid-template-columns:1fr;text-align:center;justify-items:center;padding:40px 20px 56px}
+  .hero-in{
+    grid-template-columns:1fr;text-align:center;
+    justify-items:center;padding:40px 20px 56px
+  }
   .chips{justify-content:center}
 }
 @keyframes float{50%{transform:translateY(-6px)}}
 
-/* ---------- stats ---------- */
+/* MAIN CONTENT */
 .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-.stats{margin-top:-34px;position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-  box-shadow:var(--shadow);padding:18px 20px;text-align:center}
+.stats{
+  margin-top:-34px;position:relative;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px
+}
+.stat{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:18px 20px;text-align:center
+}
 .stat b{display:block;font-size:28px;color:var(--brand)}
 .stat span{color:var(--muted);font-size:13px;font-weight:600}
-.progress{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:8px}
-.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand2),var(--ok));
-  transition:width .5s}
-
-h2.sec{font-size:22px;margin:44px 0 6px;display:flex;align-items:center;gap:10px}
-h2.sec::before{content:"";width:6px;height:24px;border-radius:4px;background:linear-gradient(var(--brand2),var(--accent))}
+.progress{
+  height:8px;border-radius:99px;background:var(--line);
+  overflow:hidden;margin-top:8px
+}
+.progress i{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg,var(--brand2),var(--ok));
+  transition:width .5s
+}
+h2.sec{
+  font-size:22px;margin:44px 0 6px;
+  display:flex;align-items:center;gap:10px
+}
+h2.sec::before{
+  content:"";width:6px;height:24px;border-radius:4px;
+  background:linear-gradient(var(--brand2),var(--accent))
+}
 .sec-sub{color:var(--muted);margin:0 0 18px}
 
-/* ---------- document cards ---------- */
-.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.doc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
-  box-shadow:var(--shadow);transition:.25s;position:relative;overflow:hidden}
-.doc:hover{transform:translateY(-5px);border-color:var(--brand2)}
-.doc .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:14px;
-  background:linear-gradient(135deg,var(--brand),var(--brand2))}
-.doc:nth-child(2) .ic{background:linear-gradient(135deg,#0f766e,#14b8a6)}
-.doc:nth-child(3) .ic{background:linear-gradient(135deg,#b45309,#f59e0b)}
-.doc h3{margin:0 0 4px;font-size:18px}
-.doc p{margin:0 0 16px;color:var(--muted);font-size:14px}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-.btn{border:1px solid var(--line);background:var(--bg);padding:9px 15px;border-radius:11px;font-weight:600;
-  font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.15s}
-.btn:hover{border-color:var(--brand2);color:var(--brand)}
-.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
-.btn.primary:hover{color:#fff;filter:brightness(1.1)}
-
-/* ---------- diary controls ---------- */
-.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);
-  padding:5px;border-radius:14px}
-.tab{border:0;background:transparent;padding:8px 14px;border-radius:10px;font-weight:700;font-size:14px;color:var(--muted)}
-.tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
-.search{flex:1;min-width:150px;max-width:260px;border:1px solid var(--line);background:var(--surface);
-  color:var(--text);padding:11px 14px;border-radius:12px;font:inherit}
+/* CONTROLS */
+.controls{
+  display:flex;flex-wrap:wrap;gap:12px;
+  align-items:center;margin-bottom:18px
+}
+.tabs{
+  display:flex;gap:6px;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--line);
+  padding:5px;border-radius:14px
+}
+.tab{
+  border:0;background:transparent;padding:8px 14px;
+  border-radius:10px;font-weight:700;font-size:14px;
+  color:var(--muted)
+}
+.tab.on{
+  background:linear-gradient(135deg,var(--brand),var(--brand2));
+  color:#fff
+}
+.search{
+  flex:1;min-width:150px;max-width:260px;
+  border:1px solid var(--line);background:var(--surface);
+  color:var(--text);padding:11px 14px;border-radius:12px;
+  font:inherit
+}
 .search:focus{outline:2px solid var(--brand2);outline-offset:1px}
 
-/* ---------- day cards ---------- */
-.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-.day{position:relative;text-align:left;background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow);transition:.25s;overflow:hidden}
-.day::after{content:"";position:absolute;inset:0;opacity:0;transition:.25s;
-  background:linear-gradient(135deg,var(--brand),var(--brand2))}
+/* DAY CARDS */
+.days{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:14px
+}
+.day{
+  position:relative;text-align:left;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 16px;box-shadow:var(--shadow);
+  transition:.25s;overflow:hidden
+}
+.day::after{
+  content:"";position:absolute;inset:0;opacity:0;transition:.25s;
+  background:linear-gradient(135deg,var(--brand),var(--brand2))
+}
 .day>*{position:relative;z-index:1;transition:.25s}
-.day:hover{transform:translateY(-5px) scale(1.02);border-color:transparent}
+.day:hover{
+  transform:translateY(-5px) scale(1.02);border-color:transparent
+}
 .day:hover::after{opacity:1}
 .day:hover>*{color:#fff}
-.day small{color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
-.day b{display:block;font-size:34px;line-height:1.1;margin:2px 0 8px}
+.day small{
+  color:var(--muted);font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;font-size:11px
+}
+.day b{
+  display:block;font-size:34px;line-height:1.1;
+  margin:2px 0 8px
+}
 .day .go{font-size:13px;font-weight:700;color:var(--brand)}
-.day.seen::before{content:"\2713";position:absolute;top:10px;right:12px;z-index:2;width:22px;height:22px;
-  border-radius:50%;background:var(--ok);color:#fff;font-size:13px;display:grid;place-items:center;font-weight:800}
-.empty{display:none;padding:30px;text-align:center;color:var(--muted)}
+.day.seen::before{
+  content:"\2713";position:absolute;top:10px;right:12px;z-index:2;
+  width:22px;height:22px;border-radius:50%;background:var(--ok);
+  color:#fff;font-size:13px;display:grid;place-items:center;font-weight:800
+}
+.empty{
+  display:none;padding:30px;text-align:center;color:var(--muted)
+}
 
-/* reveal */
+/* REVEAL */
 .rv{animation:rise .5s ease both}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}}
-@media(prefers-reduced-motion:reduce){.rv{animation:none}.logo-wrap{animation:none}}
+@media(prefers-reduced-motion:reduce){
+  .rv{animation:none}
+  .logo-wrap{animation:none}
+}
 
-footer{margin-top:60px;border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:var(--muted);font-size:14px}
+/* FOOTER */
+footer{
+  margin-top:60px;border-top:1px solid var(--line);
+  padding:26px 20px;text-align:center;
+  color:var(--muted);font-size:14px
+}
 footer b{color:var(--text)}
 
-/* ---------- viewer modal ---------- */
-.modal{position:fixed;inset:0;z-index:50;background:rgba(8,10,24,.72);backdrop-filter:blur(4px);
-  display:none;align-items:center;justify-content:center;padding:18px}
+/* PDF VIEWER */
+.modal{
+  position:fixed;inset:0;z-index:50;
+  background:rgba(8,10,24,.72);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;padding:18px
+}
 .modal.open{display:flex;animation:fade .2s}
 @keyframes fade{from{opacity:0}}
-.panel{width:min(1000px,100%);height:min(90vh,100%);background:var(--surface);border-radius:20px;
-  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.bar{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.panel{
+  width:min(1000px,100%);height:min(90vh,100%);
+  background:var(--surface);border-radius:20px;
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.5)
+}
+.bar{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 14px;border-bottom:1px solid var(--line);
+  flex-wrap:wrap
+}
 .bar h4{margin:0;font-size:16px;flex:1;min-width:120px}
 .panel iframe{flex:1;border:0;width:100%;background:#fff}
-.note{padding:8px 14px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+.note{
+  padding:8px 14px;font-size:12px;color:var(--muted);
+  border-top:1px solid var(--line)
+}
+.btn{
+  border:1px solid var(--line);background:var(--bg);
+  padding:9px 15px;border-radius:11px;font-weight:600;
+  font-size:14px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;transition:.15s
+}
+.btn:hover{border-color:var(--brand2);color:var(--brand)}
+.btn.primary{
+  background:linear-gradient(135deg,var(--brand),var(--brand2));
+  color:#fff;border-color:transparent
+}
+.btn:disabled{cursor:not-allowed;opacity:.4}
+
+@media(max-width:600px){
+  .stats{grid-template-columns:1fr}
+  .modal{padding:5px}
+  .panel{height:95vh;border-radius:12px}
+  .bar{gap:5px;padding:8px}
+  .bar .btn{padding:7px 9px;font-size:12px}
+  .bar h4{width:100%;flex-basis:100%}
+  .search{max-width:none}
+}
 </style>
 </head>
+
 <body>
 
+<!-- NAVIGATION -->
 <header class="nav">
   <div class="nav-in">
-    <img src="gnelogo.png" alt="GNDEC logo" onerror="this.style.display='none'">
-    <div class="t">Guru Nanak Dev Engineering College<small>Ludhiana &middot; Training Diary</small></div>
+    <img src="gnelogo.png" alt="GNDEC logo"
+         onerror="this.style.display='none'">
+
+    <div class="t">
+      Guru Nanak Dev Engineering College
+      <small>Ludhiana · Training Diary</small>
+    </div>
+
     <div class="sp"></div>
-    <nav class="navlinks"><a href="#documents">Documents</a><a href="#diary">Daily Diary</a></nav>
-    <button class="icon-btn" id="theme" title="Toggle light / dark" aria-label="Toggle theme">&#9788;</button>
+
+    <nav class="navlinks">
+      <a href="#diary">Daily Diary</a>
+    </nav>
+
+    <button class="icon-btn" id="theme"
+      title="Toggle light / dark"
+      aria-label="Toggle theme">&#9788;</button>
   </div>
 </header>
 
+<!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-in">
+
     <div class="logo-wrap">
-      <img src="gnelogo.png" alt="Guru Nanak Dev Engineering College logo"
+      <img src="gnelogo.png"
+           alt="Guru Nanak Dev Engineering College logo"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
       <span class="fallback">GNDEC</span>
     </div>
+
     <div>
-      <div class="kicker">Department of Computer Science and Engineering</div>
-      <div class="college">Guru Nanak Dev Engineering College</div>
+      <div class="kicker">
+        Department of Computer Science and Engineering
+      </div>
+
+      <div class="college">
+        Guru Nanak Dev Engineering College
+      </div>
+
       <p class="dept">Ludhiana, Punjab, India</p>
-      <p class="title">Four Weeks Training Diary (TR-103)</p>
+
+      <p class="title">
+        Four Weeks Training Diary (TR-103)
+      </p>
+
       <div class="chips">
         <span class="chip">Sarbjeet Kaur</span>
         <span class="chip">URN 2302665</span>
         <span class="chip">Project: AI Career Copilot</span>
       </div>
     </div>
+
   </div>
 </section>
 
+<!-- MAIN -->
 <main class="wrap">
+
+  <!-- STATISTICS -->
   <div class="stats">
-    <div class="stat rv"><b id="sDays">22</b><span>Diary days</span></div>
-    <div class="stat rv"><b>3</b><span>Documents</span></div>
-    <div class="stat rv"><b id="sSeen">0/22</b><span>Days viewed</span>
-      <div class="progress"><i id="bar"></i></div></div>
+
+    <div class="stat rv">
+      <b id="sDays">22</b>
+      <span>Diary Days</span>
+    </div>
+
+    <div class="stat rv">
+      <b>4</b>
+      <span>Training Weeks</span>
+    </div>
+
+    <div class="stat rv">
+      <b id="sSeen">0/22</b>
+      <span>Days Viewed</span>
+      <div class="progress">
+        <i id="bar"></i>
+      </div>
+    </div>
+
   </div>
 
-  <h2 class="sec rv" id="documents">Documents</h2>
-  <p class="sec-sub rv">Open the training report, the company confirmation letter and the certificate.</p>
-  <div class="docs" id="docs"></div>
-
+  <!-- DAILY DIARY -->
   <h2 class="sec rv" id="diary">Daily Diary</h2>
-  <p class="sec-sub rv">Click a day to read that day's diary page. Use the arrow keys to move between days.</p>
+
+  <p class="sec-sub rv">
+    Click a day to read that day's diary page.
+    Use the arrow keys to move between days.
+  </p>
+
+  <!-- FILTERS -->
   <div class="controls rv">
+
     <div class="tabs" id="tabs"></div>
-    <input class="search" id="q" type="search" inputmode="numeric" placeholder="Go to day number...">
+
+    <input
+      class="search"
+      id="q"
+      type="search"
+      inputmode="numeric"
+      placeholder="Go to day number..."
+      aria-label="Search diary day"
+    >
+
   </div>
+
+  <!-- DAY CARDS -->
   <div class="days" id="days"></div>
-  <div class="empty" id="empty">No day matches your search.</div>
+
+  <div class="empty" id="empty">
+    No day matches your search.
+  </div>
+
 </main>
 
+<!-- FOOTER -->
 <footer>
-  <b>Guru Nanak Dev Engineering College, Ludhiana</b><br>
-  Department of Computer Science and Engineering &middot; Sarbjeet Kaur (URN 2302665)
+  <b>Guru Nanak Dev Engineering College, Ludhiana</b>
+  <br>
+  Department of Computer Science and Engineering
+  · Sarbjeet Kaur (URN 2302665)
 </footer>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="PDF viewer">
+<!-- PDF VIEWER MODAL -->
+<div class="modal" id="modal"
+     role="dialog" aria-modal="true"
+     aria-label="PDF viewer">
+
   <div class="panel">
+
     <div class="bar">
-      <h4 id="mTitle"></h4>
-      <button class="btn" id="prev">&larr; Prev</button>
-      <button class="btn" id="next">Next &rarr;</button>
-      <a class="btn" id="dl" download>Download</a>
-      <a class="btn" id="nt" target="_blank" rel="noopener">New tab</a>
-      <button class="btn primary" id="close">Close</button>
+
+      <h4 id="mTitle">Diary</h4>
+
+      <button class="btn" id="prev">
+        &larr; Prev
+      </button>
+
+      <button class="btn" id="next">
+        Next &rarr;
+      </button>
+
+      <a class="btn" id="dl" download>
+        Download
+      </a>
+
+      <a class="btn" id="nt"
+         target="_blank" rel="noopener">
+        New tab
+      </a>
+
+      <button class="btn primary" id="close">
+        Close
+      </button>
+
     </div>
-    <iframe id="frame" title="PDF"></iframe>
-    <div class="note">If the PDF does not show on your phone, tap <b>New tab</b>.</div>
+
+    <iframe id="frame" title="Diary PDF"></iframe>
+
+    <div class="note">
+      If the PDF does not show on your phone,
+      tap <b>New tab</b>.
+    </div>
+
   </div>
 </div>
 
 <script>
-/* ============ EDIT HERE ============ */
+
+/* ===================================
+   CONFIGURATION
+=================================== */
+
 const CONFIG = {
   totalDays: 22,
   folder: "pdfs/",
-  weeks: [[1,6],[7,12],[13,17],[18,22]]   // which days fall in Week 1..4
+
+  // Week-wise diary distribution
+  weeks: [
+    [1,6],
+    [7,12],
+    [13,17],
+    [18,22]
+  ]
 };
-const DOCS = [
-  { label:"Training Report",     file:"training-report.pdf",
-    desc:"Complete project report in the GNDEC format.",
-    icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/>' },
-  { label:"Confirmation Letter", file:"confirmation-letter.pdf",
-    desc:"Training confirmation letter from the company.",
-    icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
-  { label:"Certificate",         file:"certificate.pdf",
-    desc:"Training completion certificate.",
-    icon:'<circle cx="12" cy="9" r="6"/><path d="m8.5 14.5-1.5 7 5-3 5 3-1.5-7"/>' }
-];
-/* =================================== */
+
+/* ===================================
+   HELPERS
+=================================== */
 
 const $ = s => document.querySelector(s);
-const url = f => CONFIG.folder + encodeURIComponent(f);
-const svg = p => `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 
-/* ---- safe storage ---- */
+// Generate PDF URL
+const url = file =>
+  CONFIG.folder + encodeURIComponent(file);
+
+/* ===================================
+   SAFE LOCAL STORAGE
+=================================== */
+
 const store = {
-  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
-  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+  get(key){
+    try{
+      return localStorage.getItem(key);
+    }catch(e){
+      return null;
+    }
+  },
+
+  set(key,value){
+    try{
+      localStorage.setItem(key,value);
+    }catch(e){}
+  }
+
 };
 
-/* ---- theme ---- */
+/* ===================================
+   THEME
+=================================== */
+
 const root = document.documentElement;
-function setTheme(t){ root.setAttribute("data-theme", t); $("#theme").innerHTML = t==="dark" ? "&#9790;" : "&#9788;"; store.set("td_theme", t); }
-setTheme(store.get("td_theme") || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light"));
-$("#theme").onclick = () => setTheme(root.getAttribute("data-theme")==="dark" ? "light" : "dark");
 
-/* ---- viewed days ---- */
-let seen = new Set((store.get("td_seen")||"").split(",").filter(Boolean).map(Number));
+function setTheme(theme){
+
+  root.setAttribute("data-theme",theme);
+
+  $("#theme").innerHTML =
+    theme === "dark" ? "&#9790;" : "&#9788;";
+
+  store.set("td_theme",theme);
+}
+
+setTheme(
+  store.get("td_theme") ||
+  (window.matchMedia &&
+   window.matchMedia("(prefers-color-scheme:dark)").matches
+   ? "dark" : "light")
+);
+
+$("#theme").onclick = () => {
+
+  const current =
+    root.getAttribute("data-theme");
+
+  setTheme(current === "dark" ? "light" : "dark");
+
+};
+
+/* ===================================
+   DIARY DAYS
+=================================== */
+
+const dayItems = Array.from(
+  {length:CONFIG.totalDays},
+  (_,k) => ({
+    label:"Day " + (k+1),
+    file:"day " + (k+1) + ".pdf",
+    day:k+1
+  })
+);
+
+/* ===================================
+   VIEWED DAYS TRACKING
+=================================== */
+
+let seen = new Set(
+  (store.get("td_seen") || "")
+    .split(",")
+    .map(Number)
+    .filter(n =>
+      Number.isInteger(n) &&
+      n >= 1 &&
+      n <= CONFIG.totalDays
+    )
+);
+
 function updateProgress(){
-  $("#sSeen").textContent = seen.size + "/" + CONFIG.totalDays;
-  $("#bar").style.width = (seen.size / CONFIG.totalDays * 100) + "%";
-  document.querySelectorAll(".day").forEach(d => d.classList.toggle("seen", seen.has(+d.dataset.day)));
+
+  $("#sSeen").textContent =
+    seen.size + "/" + CONFIG.totalDays;
+
+  $("#bar").style.width =
+    (seen.size / CONFIG.totalDays * 100) + "%";
+
+  document.querySelectorAll(".day").forEach(day => {
+
+    day.classList.toggle(
+      "seen",
+      seen.has(Number(day.dataset.day))
+    );
+
+  });
+
 }
 
-/* ---- viewer ---- */
-let cur = {list:[], i:0};
-function openViewer(list, i){
-  cur = {list, i};
-  const it = list[i];
-  $("#mTitle").textContent = it.label;
-  $("#frame").src = url(it.file) + "#toolbar=1&navpanes=0";
-  $("#dl").href = url(it.file); $("#dl").setAttribute("download", it.file);
-  $("#nt").href = url(it.file);
-  $("#prev").disabled = i === 0; $("#next").disabled = i === list.length-1;
-  $("#prev").style.opacity = i === 0 ? .4 : 1; $("#next").style.opacity = i === list.length-1 ? .4 : 1;
-  $("#modal").classList.add("open"); document.body.style.overflow = "hidden";
-  if (it.day){ seen.add(it.day); store.set("td_seen", [...seen].join(",")); updateProgress(); }
+/* ===================================
+   PDF VIEWER
+=================================== */
+
+let cur = {
+  list:[],
+  i:0
+};
+
+function openViewer(list,index){
+
+  cur = {
+    list:list,
+    i:index
+  };
+
+  const item = list[index];
+
+  const pdfURL = url(item.file);
+
+  $("#mTitle").textContent = item.label;
+
+  $("#frame").src =
+    pdfURL + "#toolbar=1&navpanes=0";
+
+  $("#dl").href = pdfURL;
+
+  $("#dl").setAttribute(
+    "download",
+    item.file
+  );
+
+  $("#nt").href = pdfURL;
+
+  $("#prev").disabled = index === 0;
+
+  $("#next").disabled =
+    index === list.length - 1;
+
+  $("#modal").classList.add("open");
+
+  document.body.style.overflow = "hidden";
+
+  // Mark diary day as viewed
+  if(item.day){
+
+    seen.add(item.day);
+
+    store.set(
+      "td_seen",
+      [...seen].join(",")
+    );
+
+    updateProgress();
+
+  }
+
 }
-function closeViewer(){ $("#modal").classList.remove("open"); $("#frame").src = "about:blank"; document.body.style.overflow = ""; }
-function step(d){ const n = cur.i + d; if (n>=0 && n<cur.list.length) openViewer(cur.list, n); }
+
+function closeViewer(){
+
+  $("#modal").classList.remove("open");
+
+  $("#frame").src = "about:blank";
+
+  document.body.style.overflow = "";
+
+}
+
+function step(direction){
+
+  const nextIndex = cur.i + direction;
+
+  if(
+    nextIndex >= 0 &&
+    nextIndex < cur.list.length
+  ){
+
+    openViewer(cur.list,nextIndex);
+
+  }
+
+}
+
+/* VIEWER BUTTON EVENTS */
+
 $("#close").onclick = closeViewer;
+
 $("#prev").onclick = () => step(-1);
+
 $("#next").onclick = () => step(1);
-$("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeViewer(); });
-document.addEventListener("keydown", e => {
-  if (!$("#modal").classList.contains("open")) return;
-  if (e.key === "Escape") closeViewer();
-  if (e.key === "ArrowLeft") step(-1);
-  if (e.key === "ArrowRight") step(1);
+
+// Close when clicking outside viewer
+$("#modal").addEventListener("click",e => {
+
+  if(e.target.id === "modal"){
+    closeViewer();
+  }
+
 });
 
-/* ---- documents ---- */
-const docItems = DOCS.map(d => ({label:d.label, file:d.file}));
-DOCS.forEach((d, i) => {
-  const el = document.createElement("div");
-  el.className = "doc rv";
-  el.innerHTML = `<div class="ic">${svg(d.icon)}</div><h3>${d.label}</h3><p>${d.desc}</p>
-    <div class="row"><button class="btn primary">View</button>
-    <a class="btn" href="${url(d.file)}" download="${d.file}">Download</a></div>`;
-  el.querySelector("button").onclick = () => openViewer(docItems, i);
-  $("#docs").appendChild(el);
+// Keyboard navigation
+document.addEventListener("keydown",e => {
+
+  if(!$("#modal").classList.contains("open")){
+    return;
+  }
+
+  if(e.key === "Escape"){
+    closeViewer();
+  }
+
+  if(e.key === "ArrowLeft"){
+    step(-1);
+  }
+
+  if(e.key === "ArrowRight"){
+    step(1);
+  }
+
 });
 
-/* ---- days ---- */
-const dayItems = Array.from({length:CONFIG.totalDays}, (_, k) => ({label:"Day " + (k+1), file:"day " + (k+1) + ".pdf", day:k+1}));
-let week = 0;                       // 0 = all
-const tabs = ["All", ...CONFIG.weeks.map((_, k) => "Week " + (k+1))];
-tabs.forEach((t, k) => {
-  const b = document.createElement("button");
-  b.className = "tab" + (k===0 ? " on" : ""); b.textContent = t;
-  b.onclick = () => { week = k; document.querySelectorAll(".tab").forEach((x, j) => x.classList.toggle("on", j===k)); render(); };
-  $("#tabs").appendChild(b);
-});
-$("#q").addEventListener("input", render);
+/* ===================================
+   WEEK FILTERS
+=================================== */
 
-function inWeek(n){ if (!week) return true; const [a,b] = CONFIG.weeks[week-1]; return n>=a && n<=b; }
+let week = 0;
+
+// 0 = All days
+const tabs = [
+  "All",
+  ...CONFIG.weeks.map(
+    (_,index) => "Week " + (index+1)
+  )
+];
+
+// Generate week buttons
+tabs.forEach((title,index) => {
+
+  const button = document.createElement("button");
+
+  button.className =
+    "tab" + (index === 0 ? " on" : "");
+
+  button.textContent = title;
+
+  button.onclick = () => {
+
+    week = index;
+
+    document.querySelectorAll(".tab").forEach(
+      (tab,j) => {
+        tab.classList.toggle("on",j === index);
+      }
+    );
+
+    render();
+
+  };
+
+  $("#tabs").appendChild(button);
+
+});
+
+/* ===================================
+   SEARCH AND FILTER
+=================================== */
+
+$("#q").addEventListener("input",render);
+
+function inWeek(day){
+
+  if(!week) return true;
+
+  const [start,end] =
+    CONFIG.weeks[week-1];
+
+  return day >= start && day <= end;
+
+}
+
+/* ===================================
+   RENDER DIARY CARDS
+=================================== */
+
 function render(){
-  const q = $("#q").value.trim();
-  const box = $("#days"); box.innerHTML = "";
+
+  const query =
+    $("#q").value.trim();
+
+  const box = $("#days");
+
+  box.innerHTML = "";
+
   let shown = 0;
-  dayItems.forEach((it, idx) => {
-    if (!inWeek(it.day)) return;
-    if (q && String(it.day) !== q && !String(it.day).startsWith(q)) return;
-    const b = document.createElement("button");
-    b.className = "day rv"; b.dataset.day = it.day;
-    b.innerHTML = `<small>Day</small><b>${it.day}</b><span class="go">Open diary &rarr;</span>`;
-    b.onclick = () => openViewer(dayItems, idx);
-    box.appendChild(b); shown++;
+
+  dayItems.forEach((item,index) => {
+
+    // Apply week filter
+    if(!inWeek(item.day)){
+      return;
+    }
+
+    // Apply day search
+    if(
+      query &&
+      String(item.day) !== query &&
+      !String(item.day).startsWith(query)
+    ){
+      return;
+    }
+
+    const button =
+      document.createElement("button");
+
+    button.className = "day rv";
+
+    button.dataset.day = item.day;
+
+    button.innerHTML = `
+      <small>Day</small>
+      <b>${item.day}</b>
+      <span class="go">Open diary &rarr;</span>
+    `;
+
+    button.onclick = () => {
+
+      openViewer(dayItems,index);
+
+    };
+
+    box.appendChild(button);
+
+    shown++;
+
   });
-  $("#empty").style.display = shown ? "none" : "block";
-  updateProgress(); observe();
+
+  $("#empty").style.display =
+    shown ? "none" : "block";
+
+  updateProgress();
+
+  observe();
+
 }
 
-/* ---- scroll reveal ---- */
-const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-}), {threshold:.08}) : null;
+/* ===================================
+   SCROLL REVEAL
+=================================== */
+
+const io =
+  "IntersectionObserver" in window
+  ? new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("in");
+
+          io.unobserve(entry.target);
+
+        }
+
+      });
+
+    },{threshold:.08})
+  : null;
+
 function observe(){
-  document.querySelectorAll(".rv:not(.in)").forEach((el, i) => {
-    el.style.transitionDelay = Math.min(i % 12, 11) * 40 + "ms";
-    io ? io.observe(el) : el.classList.add("in");
-  });
+
+  document.querySelectorAll(".rv:not(.in)")
+    .forEach((element,index) => {
+
+      element.style.transitionDelay =
+        Math.min(index % 12,11) * 40 + "ms";
+
+      if(io){
+        io.observe(element);
+      }else{
+        element.classList.add("in");
+      }
+
+    });
+
 }
 
-$("#sDays").textContent = CONFIG.totalDays;
+/* ===================================
+   INITIALIZE WEBSITE
+=================================== */
+
+$("#sDays").textContent =
+  CONFIG.totalDays;
+
 render();
+
 </script>
+
 </body>
 </html>
