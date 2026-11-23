@@ -3,65 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Training Diary - Sarbjeet Kaur</title>
+<title>Training Diary - Sarbjeet Kaur | GNDEC Ludhiana</title>
+<link rel="icon" href="gnelogo.png">
 <style>
-  :root{--bg:#f6f7fb;--card:#fff;--text:#1f2430;--muted:#667085;--brand:#0891b2;--line:#e4e7ec}
-  @media (prefers-color-scheme:dark){
-    :root{--bg:#0f1218;--card:#181c25;--text:#e8eaf0;--muted:#98a2b3;--line:#2a3040}
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);
-       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-  .wrap{max-width:960px;margin:0 auto;padding:32px 16px 64px}
-  h1{margin:0 0 4px;font-size:28px}
-  .sub{color:var(--muted);margin:0 0 28px}
-  .grid{display:grid;gap:12px;margin-bottom:24px}
-  .docs{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-  .days{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
-  a.btn{display:flex;align-items:center;justify-content:center;text-align:center;
-        padding:14px 12px;border-radius:12px;background:var(--card);
-        border:1px solid var(--line);color:var(--text);text-decoration:none;
-        font-weight:600;transition:.15s}
-  a.btn:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-2px)}
-  a.doc{background:var(--brand);border-color:var(--brand);color:#fff;padding:18px 12px}
-  a.doc:hover{color:#fff;opacity:.9}
+:root{
+  --bg:#f4f6fb; --surface:#ffffff; --text:#14182b; --muted:#5b6478; --line:#e3e7f0;
+  --brand:#1f2a7a; --brand2:#3b4bd6; --accent:#e11d48; --ok:#16a34a;
+  --shadow:0 8px 30px rgba(20,24,43,.08); --radius:18px;
+}
+:root[data-theme="dark"]{
+  --bg:#0c1020; --surface:#151a30; --text:#eef0fa; --muted:#9aa3bd; --line:#262d4a;
+  --brand:#8b97ff; --brand2:#6d7bff; --accent:#fb7185; --ok:#4ade80;
+  --shadow:0 8px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;line-height:1.5}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+
+/* ---------- top bar ---------- */
+.nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);
+  background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px}
+.nav img{width:38px;height:38px;object-fit:contain}
+.nav .t{font-weight:700;font-size:15px;line-height:1.15}
+.nav .t small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.sp{flex:1}
+.navlinks a{margin-left:14px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px}
+.navlinks a:hover{color:var(--brand)}
+.icon-btn{border:1px solid var(--line);background:var(--surface);width:38px;height:38px;border-radius:12px;
+  display:grid;place-items:center}
+.icon-btn:hover{border-color:var(--brand)}
+@media(max-width:640px){.navlinks{display:none}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;color:#fff;
+  background:radial-gradient(1200px 500px at 85% -10%,#4d5cff55,transparent 60%),
+             radial-gradient(800px 400px at 0% 110%,#e11d4844,transparent 60%),
+             linear-gradient(135deg,#141b5c,#1f2a7a 55%,#2b3aa8)}
+.hero::before{content:"";position:absolute;inset:0;opacity:.07;
+  background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:38px 38px}
+.hero-in{position:relative;max-width:1100px;margin:0 auto;padding:56px 20px 70px;
+  display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.logo-wrap{width:128px;height:128px;border-radius:50%;background:#fff;display:grid;place-items:center;
+  box-shadow:0 14px 40px rgba(0,0,0,.35);animation:float 5s ease-in-out infinite}
+.logo-wrap img{width:108px;height:108px;object-fit:contain}
+.logo-wrap .fallback{display:none;font-weight:800;color:#1f2a7a;font-size:26px}
+.kicker{letter-spacing:.14em;text-transform:uppercase;font-size:12px;opacity:.8;font-weight:700}
+.college{font-size:clamp(22px,3.4vw,34px);font-weight:800;margin:6px 0 2px;line-height:1.15}
+.dept{opacity:.85;margin:0 0 18px}
+.title{font-size:clamp(18px,2.4vw,24px);font-weight:700;margin:0 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:#ffffff1f;border:1px solid #ffffff33;padding:7px 14px;border-radius:999px;font-size:14px;
+  font-weight:600;backdrop-filter:blur(4px)}
+@media(max-width:720px){
+  .hero-in{grid-template-columns:1fr;text-align:center;justify-items:center;padding:40px 20px 56px}
+  .chips{justify-content:center}
+}
+@keyframes float{50%{transform:translateY(-6px)}}
+
+/* ---------- stats ---------- */
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.stats{margin-top:-34px;position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:18px 20px;text-align:center}
+.stat b{display:block;font-size:28px;color:var(--brand)}
+.stat span{color:var(--muted);font-size:13px;font-weight:600}
+.progress{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:8px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand2),var(--ok));
+  transition:width .5s}
+
+h2.sec{font-size:22px;margin:44px 0 6px;display:flex;align-items:center;gap:10px}
+h2.sec::before{content:"";width:6px;height:24px;border-radius:4px;background:linear-gradient(var(--brand2),var(--accent))}
+.sec-sub{color:var(--muted);margin:0 0 18px}
+
+/* ---------- document cards ---------- */
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+  box-shadow:var(--shadow);transition:.25s;position:relative;overflow:hidden}
+.doc:hover{transform:translateY(-5px);border-color:var(--brand2)}
+.doc .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:14px;
+  background:linear-gradient(135deg,var(--brand),var(--brand2))}
+.doc:nth-child(2) .ic{background:linear-gradient(135deg,#0f766e,#14b8a6)}
+.doc:nth-child(3) .ic{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.doc h3{margin:0 0 4px;font-size:18px}
+.doc p{margin:0 0 16px;color:var(--muted);font-size:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--bg);padding:9px 15px;border-radius:11px;font-weight:600;
+  font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.btn:hover{border-color:var(--brand2);color:var(--brand)}
+.btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.btn.primary:hover{color:#fff;filter:brightness(1.1)}
+
+/* ---------- diary controls ---------- */
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:18px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);
+  padding:5px;border-radius:14px}
+.tab{border:0;background:transparent;padding:8px 14px;border-radius:10px;font-weight:700;font-size:14px;color:var(--muted)}
+.tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+.search{flex:1;min-width:150px;max-width:260px;border:1px solid var(--line);background:var(--surface);
+  color:var(--text);padding:11px 14px;border-radius:12px;font:inherit}
+.search:focus{outline:2px solid var(--brand2);outline-offset:1px}
+
+/* ---------- day cards ---------- */
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.day{position:relative;text-align:left;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:18px 16px;box-shadow:var(--shadow);transition:.25s;overflow:hidden}
+.day::after{content:"";position:absolute;inset:0;opacity:0;transition:.25s;
+  background:linear-gradient(135deg,var(--brand),var(--brand2))}
+.day>*{position:relative;z-index:1;transition:.25s}
+.day:hover{transform:translateY(-5px) scale(1.02);border-color:transparent}
+.day:hover::after{opacity:1}
+.day:hover>*{color:#fff}
+.day small{color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.day b{display:block;font-size:34px;line-height:1.1;margin:2px 0 8px}
+.day .go{font-size:13px;font-weight:700;color:var(--brand)}
+.day.seen::before{content:"\2713";position:absolute;top:10px;right:12px;z-index:2;width:22px;height:22px;
+  border-radius:50%;background:var(--ok);color:#fff;font-size:13px;display:grid;place-items:center;font-weight:800}
+.empty{display:none;padding:30px;text-align:center;color:var(--muted)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.logo-wrap{animation:none}}
+
+footer{margin-top:60px;border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:var(--muted);font-size:14px}
+footer b{color:var(--text)}
+
+/* ---------- viewer modal ---------- */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(8,10,24,.72);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;padding:18px}
+.modal.open{display:flex;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.panel{width:min(1000px,100%);height:min(90vh,100%);background:var(--surface);border-radius:20px;
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.bar{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.bar h4{margin:0;font-size:16px;flex:1;min-width:120px}
+.panel iframe{flex:1;border:0;width:100%;background:#fff}
+.note{padding:8px 14px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Training Diary</h1>
-  <p class="sub">Sarbjeet Kaur &middot; URN 2302665</p>
 
-  <div class="grid docs" id="docs"></div>
-  <div class="grid days" id="days"></div>
-</div>
+<header class="nav">
+  <div class="nav-in">
+    <img src="gnelogo.png" alt="GNDEC logo" onerror="this.style.display='none'">
+    <div class="t">Guru Nanak Dev Engineering College<small>Ludhiana &middot; Training Diary</small></div>
+    <div class="sp"></div>
+    <nav class="navlinks"><a href="#documents">Documents</a><a href="#diary">Daily Diary</a></nav>
+    <button class="icon-btn" id="theme" title="Toggle light / dark" aria-label="Toggle theme">&#9788;</button>
+  </div>
+</header>
 
-<script>
-  const TOTAL_DAYS = 22;
-  const FOLDER = "pdfs/";
-  const DOCS = [
-    { label: "Training Report",     file: "training-report.pdf" },
-    { label: "Confirmation Letter", file: "confirmation-letter.pdf" },
-    { label: "Certificate",         file: "certificate.pdf" }
-  ];
+<section class="hero">
+  <div class="hero-in">
+    <div class="logo-wrap">
+      <img src="gnelogo.png" alt="Guru Nanak Dev Engineering College logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="fallback">GNDEC</span>
+    </div>
+    <div>
+      <div class="kicker">Department of Computer Science and Engineering</div>
+      <div class="college">Guru Nanak Dev Engineering College</div>
+      <p class="dept">Ludhiana, Punjab, India</p>
+      <p class="title">Four Weeks Training Diary (TR-103)</p>
+      <div class="chips">
+        <span class="chip">Sarbjeet Kaur</span>
+        <span class="chip">URN 2302665</span>
+        <span class="chip">Project: AI Career Copilot</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-  function link(label, file, cls){
-    const a = document.createElement("a");
-    a.className = "btn " + (cls || "");
-    a.textContent = label;
-    a.href = FOLDER + encodeURIComponent(file);
-    a.target = "_blank";
-    a.rel = "noopener";
-    return a;
-  }
+<main class="wrap">
+  <div class="stats">
+    <div class="stat rv"><b id="sDays">22</b><span>Diary days</span></div>
+    <div class="stat rv"><b>3</b><span>Documents</span></div>
+    <div class="stat rv"><b id="sSeen">0/22</b><span>Days viewed</span>
+      <div class="progress"><i id="bar"></i></div></div>
+  </div>
 
-  const docs = document.getElementById("docs");
-  DOCS.forEach(d => docs.appendChild(link(d.label, d.file, "doc")));
+  <h2 class="sec rv" id="documents">Documents</h2>
+  <p class="sec-sub rv">Open the training report, the company confirmation letter and the certificate.</p>
+  <div class="docs" id="docs"></div>
 
-  const days = document.getElementById("days");
-  for (let i = 1; i <= TOTAL_DAYS; i++){
-    days.appendChild(link("Day " + i, "day " + i + ".pdf"));
-  }
-</script>
-</body>
-</html>
+  <h2 class="sec rv" id="diary">Daily Diary</h2>
+  <p class="sec-sub rv">Click a day to read that day's diary page. Use the arrow keys to move between days.</p>
+  <div class="controls rv">
+    <div class="tabs" id="tabs"></div>
+    <input class="search" id="q" type="search" inputmode="numeric" placeholder="Go to day number...">
+  </div>
+  <div class="days" id="days"></div>
+  <div class="empty" id="empty">No day matches your search.</div>
+</main>
+
+<footer>
+  <b>Guru Nanak Dev Engineering College, Ludhiana</b><br>
+  Department of Computer Science and Engineering &middot; Sarbjeet Kaur (URN 2302665)
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="PDF viewer">
+  <div class="panel">
+    <div class="bar">
+      <h4 id="mTitle"></h4>
+      <button class="btn" id="prev">&larr; Prev</button>
+      <button class="btn" id="next">Next &rarr;</button>
+      <a class="btn" id="dl" download>Download</a>
+      <a class="btn" id="nt" target="_blank" rel="noopener">New tab</a>
+      <button class="btn primary" id="close">Close</button>
+    </div>
