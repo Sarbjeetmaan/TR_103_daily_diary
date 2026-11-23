@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training Diary - Sarbjeet Kaur</title>
+<style>
+  :root{--bg:#f6f7fb;--card:#fff;--text:#1f2430;--muted:#667085;--brand:#0891b2;--line:#e4e7ec}
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0f1218;--card:#181c25;--text:#e8eaf0;--muted:#98a2b3;--line:#2a3040}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 16px 64px}
+  h1{margin:0 0 4px;font-size:28px}
+  .sub{color:var(--muted);margin:0 0 28px}
+  .grid{display:grid;gap:12px;margin-bottom:24px}
+  .docs{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .days{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  a.btn{display:flex;align-items:center;justify-content:center;text-align:center;
+        padding:14px 12px;border-radius:12px;background:var(--card);
+        border:1px solid var(--line);color:var(--text);text-decoration:none;
+        font-weight:600;transition:.15s}
+  a.btn:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-2px)}
+  a.doc{background:var(--brand);border-color:var(--brand);color:#fff;padding:18px 12px}
+  a.doc:hover{color:#fff;opacity:.9}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Training Diary</h1>
+  <p class="sub">Sarbjeet Kaur &middot; URN 2302665</p>
+
+  <div class="grid docs" id="docs"></div>
+  <div class="grid days" id="days"></div>
+</div>
+
+<script>
+  const TOTAL_DAYS = 22;
+  const FOLDER = "pdfs/";
+  const DOCS = [
+    { label: "Training Report",     file: "training-report.pdf" },
+    { label: "Confirmation Letter", file: "confirmation-letter.pdf" },
+    { label: "Certificate",         file: "certificate.pdf" }
+  ];
+
+  function link(label, file, cls){
+    const a = document.createElement("a");
+    a.className = "btn " + (cls || "");
+    a.textContent = label;
+    a.href = FOLDER + encodeURIComponent(file);
+    a.target = "_blank";
+    a.rel = "noopener";
+    return a;
+  }
+
+  const docs = document.getElementById("docs");
+  DOCS.forEach(d => docs.appendChild(link(d.label, d.file, "doc")));
+
+  const days = document.getElementById("days");
+  for (let i = 1; i <= TOTAL_DAYS; i++){
+    days.appendChild(link("Day " + i, "day " + i + ".pdf"));
+  }
+</script>
+</body>
+</html>
