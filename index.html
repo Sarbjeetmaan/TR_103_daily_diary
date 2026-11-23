@@ -126,9 +126,9 @@ h2.sec::before{content:"";width:6px;height:24px;border-radius:4px;background:lin
 .empty{display:none;padding:30px;text-align:center;color:var(--muted)}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
-.rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.logo-wrap{animation:none}}
+.rv{animation:rise .5s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}}
+@media(prefers-reduced-motion:reduce){.rv{animation:none}.logo-wrap{animation:none}}
 
 footer{margin-top:60px;border-top:1px solid var(--line);padding:26px 20px;text-align:center;color:var(--muted);font-size:14px}
 footer b{color:var(--text)}
@@ -216,3 +216,137 @@ footer b{color:var(--text)}
       <a class="btn" id="nt" target="_blank" rel="noopener">New tab</a>
       <button class="btn primary" id="close">Close</button>
     </div>
+    <iframe id="frame" title="PDF"></iframe>
+    <div class="note">If the PDF does not show on your phone, tap <b>New tab</b>.</div>
+  </div>
+</div>
+
+<script>
+/* ============ EDIT HERE ============ */
+const CONFIG = {
+  totalDays: 22,
+  folder: "pdfs/",
+  weeks: [[1,6],[7,12],[13,17],[18,22]]   // which days fall in Week 1..4
+};
+const DOCS = [
+  { label:"Training Report",     file:"training-report.pdf",
+    desc:"Complete project report in the GNDEC format.",
+    icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8M8 9h2"/>' },
+  { label:"Confirmation Letter", file:"confirmation-letter.pdf",
+    desc:"Training confirmation letter from the company.",
+    icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>' },
+  { label:"Certificate",         file:"certificate.pdf",
+    desc:"Training completion certificate.",
+    icon:'<circle cx="12" cy="9" r="6"/><path d="m8.5 14.5-1.5 7 5-3 5 3-1.5-7"/>' }
+];
+/* =================================== */
+
+const $ = s => document.querySelector(s);
+const url = f => CONFIG.folder + encodeURIComponent(f);
+const svg = p => `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+
+/* ---- safe storage ---- */
+const store = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+};
+
+/* ---- theme ---- */
+const root = document.documentElement;
+function setTheme(t){ root.setAttribute("data-theme", t); $("#theme").innerHTML = t==="dark" ? "&#9790;" : "&#9788;"; store.set("td_theme", t); }
+setTheme(store.get("td_theme") || (matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light"));
+$("#theme").onclick = () => setTheme(root.getAttribute("data-theme")==="dark" ? "light" : "dark");
+
+/* ---- viewed days ---- */
+let seen = new Set((store.get("td_seen")||"").split(",").filter(Boolean).map(Number));
+function updateProgress(){
+  $("#sSeen").textContent = seen.size + "/" + CONFIG.totalDays;
+  $("#bar").style.width = (seen.size / CONFIG.totalDays * 100) + "%";
+  document.querySelectorAll(".day").forEach(d => d.classList.toggle("seen", seen.has(+d.dataset.day)));
+}
+
+/* ---- viewer ---- */
+let cur = {list:[], i:0};
+function openViewer(list, i){
+  cur = {list, i};
+  const it = list[i];
+  $("#mTitle").textContent = it.label;
+  $("#frame").src = url(it.file) + "#toolbar=1&navpanes=0";
+  $("#dl").href = url(it.file); $("#dl").setAttribute("download", it.file);
+  $("#nt").href = url(it.file);
+  $("#prev").disabled = i === 0; $("#next").disabled = i === list.length-1;
+  $("#prev").style.opacity = i === 0 ? .4 : 1; $("#next").style.opacity = i === list.length-1 ? .4 : 1;
+  $("#modal").classList.add("open"); document.body.style.overflow = "hidden";
+  if (it.day){ seen.add(it.day); store.set("td_seen", [...seen].join(",")); updateProgress(); }
+}
+function closeViewer(){ $("#modal").classList.remove("open"); $("#frame").src = "about:blank"; document.body.style.overflow = ""; }
+function step(d){ const n = cur.i + d; if (n>=0 && n<cur.list.length) openViewer(cur.list, n); }
+$("#close").onclick = closeViewer;
+$("#prev").onclick = () => step(-1);
+$("#next").onclick = () => step(1);
+$("#modal").addEventListener("click", e => { if (e.target.id === "modal") closeViewer(); });
+document.addEventListener("keydown", e => {
+  if (!$("#modal").classList.contains("open")) return;
+  if (e.key === "Escape") closeViewer();
+  if (e.key === "ArrowLeft") step(-1);
+  if (e.key === "ArrowRight") step(1);
+});
+
+/* ---- documents ---- */
+const docItems = DOCS.map(d => ({label:d.label, file:d.file}));
+DOCS.forEach((d, i) => {
+  const el = document.createElement("div");
+  el.className = "doc rv";
+  el.innerHTML = `<div class="ic">${svg(d.icon)}</div><h3>${d.label}</h3><p>${d.desc}</p>
+    <div class="row"><button class="btn primary">View</button>
+    <a class="btn" href="${url(d.file)}" download="${d.file}">Download</a></div>`;
+  el.querySelector("button").onclick = () => openViewer(docItems, i);
+  $("#docs").appendChild(el);
+});
+
+/* ---- days ---- */
+const dayItems = Array.from({length:CONFIG.totalDays}, (_, k) => ({label:"Day " + (k+1), file:"day " + (k+1) + ".pdf", day:k+1}));
+let week = 0;                       // 0 = all
+const tabs = ["All", ...CONFIG.weeks.map((_, k) => "Week " + (k+1))];
+tabs.forEach((t, k) => {
+  const b = document.createElement("button");
+  b.className = "tab" + (k===0 ? " on" : ""); b.textContent = t;
+  b.onclick = () => { week = k; document.querySelectorAll(".tab").forEach((x, j) => x.classList.toggle("on", j===k)); render(); };
+  $("#tabs").appendChild(b);
+});
+$("#q").addEventListener("input", render);
+
+function inWeek(n){ if (!week) return true; const [a,b] = CONFIG.weeks[week-1]; return n>=a && n<=b; }
+function render(){
+  const q = $("#q").value.trim();
+  const box = $("#days"); box.innerHTML = "";
+  let shown = 0;
+  dayItems.forEach((it, idx) => {
+    if (!inWeek(it.day)) return;
+    if (q && String(it.day) !== q && !String(it.day).startsWith(q)) return;
+    const b = document.createElement("button");
+    b.className = "day rv"; b.dataset.day = it.day;
+    b.innerHTML = `<small>Day</small><b>${it.day}</b><span class="go">Open diary &rarr;</span>`;
+    b.onclick = () => openViewer(dayItems, idx);
+    box.appendChild(b); shown++;
+  });
+  $("#empty").style.display = shown ? "none" : "block";
+  updateProgress(); observe();
+}
+
+/* ---- scroll reveal ---- */
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}), {threshold:.08}) : null;
+function observe(){
+  document.querySelectorAll(".rv:not(.in)").forEach((el, i) => {
+    el.style.transitionDelay = Math.min(i % 12, 11) * 40 + "ms";
+    io ? io.observe(el) : el.classList.add("in");
+  });
+}
+
+$("#sDays").textContent = CONFIG.totalDays;
+render();
+</script>
+</body>
+</html>
